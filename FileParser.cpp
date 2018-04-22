@@ -31,7 +31,7 @@ FileParser::ValueType FileParser::getType(const std::string& number)
     for(const auto& ch : number)
     {
         if(ch == '.') { ++separators; }
-        assert (ch >= '0' || ch <= '9');
+        else { assert (ch >= '0' || ch <= '9'); }
     }
     
     if(separators == 0) { return ValueType::INT; }
