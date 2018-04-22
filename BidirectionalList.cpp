@@ -2,16 +2,17 @@
 #include <cassert>
 
 
-BidirectionalList::BidirectionalList(std::pair<uint32_t, uint32_t> a_range)
+BidirectionalList::BidirectionalList(Range range)
 {
-	listRange = a_range;
+	listRange = range;
 }
 
 BidirectionalList::~BidirectionalList()
 {
+
 }
 
-void BidirectionalList::push(double a_newElement)
+void BidirectionalList::push(double newElement)
 {
 
 }
