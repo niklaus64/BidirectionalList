@@ -4,7 +4,7 @@
 #include "FileParser.h"
 #include "BidirectionalList.h"
 
-int main(int argc, char** argv) 
+auto main(int argc, char** argv) -> int 
 {
     assert(argc > 1);
     std::cout << "DBG: argv[1] = " << argv[1] << std::endl;

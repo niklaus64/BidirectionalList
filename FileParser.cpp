@@ -15,24 +15,26 @@ BidirectionalList FileParser::parseFile(const std::string& filename, const Range
     std::string tmp;
     while(file >> tmp)
     {
-        int separators = 0;
-        for(const auto& ch : tmp)
-        {
-            if(ch == '.') { ++separators; }
-            assert (ch >= '0' || ch <= '9');
-        }
-        
-        assert(separators == 0 || separators == 1);
+        ValueType type = getType(tmp);
+        assert(type != ValueType::INVALID);
 
-        if(separators == 0)
-        {
-            list.push(numberParser.stringToInt(tmp));
-        }
-        else if(separators == 1)
-        {
-            list.push(numberParser.stringToDouble(tmp)); 
-        }
+        if(type == ValueType::INT) { list.push(numberParser.stringToInt(tmp)); } 
+        else if(type == ValueType::DOUBLE) { list.push(numberParser.stringToDouble(tmp)); }
     }
     
     return list;
+}
+
+FileParser::ValueType FileParser::getType(const std::string& number)
+{
+    int separators = 0;
+    for(const auto& ch : number)
+    {
+        if(ch == '.') { ++separators; }
+        assert (ch >= '0' || ch <= '9');
+    }
+    
+    if(separators == 0) { return ValueType::INT; }
+    else if(separators == 1) { return ValueType::DOUBLE; }
+    else { return ValueType::INVALID; }
 }
