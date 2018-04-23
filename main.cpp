@@ -11,6 +11,6 @@ auto main(int argc, char** argv) -> int
     FileParser fp;
     std::string filename{argv[1]};
     BidirectionalList list = fp.parseFile(filename, {1, 10});
-    
+
     return 0;
 }

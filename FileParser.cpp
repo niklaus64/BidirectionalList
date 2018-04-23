@@ -5,7 +5,7 @@
 
 BidirectionalList FileParser::parseFile(const std::string& filename, const Range& range)
 {
-    BidirectionalList list {range};
+    BidirectionalList list {range, std::greater<double>()};
 
     std::fstream file;
     file.open(filename, std::ios::in);
