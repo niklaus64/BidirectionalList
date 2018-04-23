@@ -3,23 +3,28 @@
 #include <iostream>
 
 
-BidirectionalList::BidirectionalList(Range a_range, const Comparator &a_comparator)
+BidirectionalList::BidirectionalList(Range range, const Comparator &comparator)
+	: head(nullptr), tail(nullptr), listRange(range), comparator(comparator)
 {
-	listRange = a_range;
-	comparator = a_comparator;
+    std::cout << "BidirectionalList::BidirectionalList()" << std::endl;
 }
 
 BidirectionalList::~BidirectionalList()
 {
+    std::cout << "BidirectionalList::~BidirectionalList()" << std::endl;
 	while (head)
 		pop();
 }
 
 void BidirectionalList::push(double newElement)
 {
+    std::cout << "BidirectionalList::push()\n";
 	//Element is not in range
 	if (newElement < listRange.first || newElement > listRange.second)
+	{
+    	std::cout << "\tNew element=" << newElement << " NOT in valid range." << std::endl;
 		return;
+	}
 
 	Node * p, *r;
 	p = new Node;
@@ -44,15 +49,18 @@ void BidirectionalList::push(double newElement)
 		r->next = p;
 		if (!p->next) tail = p;
 	}
+	std::cout << "\tNew element added properly" << std::endl;
 }
 
 void BidirectionalList::pop()
 {
+    std::cout << "BidirectionalList::pop()\n";
 	if (head)
 	{
 		Node * p = head;
 		head = head->next;
 		if (!head) tail = nullptr;
+    	std::cout << "\tPopping value=" << p->value << std::endl;
 		delete p;
 	}
 }

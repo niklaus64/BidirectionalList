@@ -5,6 +5,7 @@
 
 BidirectionalList FileParser::parseFile(const std::string& filename, const Range& range)
 {
+    std::cout << "FileParser::parseFile()" << std::endl;
     BidirectionalList list {range, std::greater<double>()};
 
     std::fstream file;
@@ -15,6 +16,7 @@ BidirectionalList FileParser::parseFile(const std::string& filename, const Range
     std::string tmp;
     while(file >> tmp)
     {
+        std::cout << "\tValue in file=" << tmp << std::endl;
         ValueType type = getType(tmp);
         assert(type != ValueType::INVALID);
 
